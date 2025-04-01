@@ -6,12 +6,12 @@ typedef struct s_stack
 	int top;
 } t_stack;
 
-typedef struct t_board_info
+typedef struct s_board_info
 {
 	int **board;
 	int row;
 	int col;
-}
+} t_board_info;
 
 int push(t_stack *stack, int input)
 {
@@ -24,6 +24,7 @@ int push(t_stack *stack, int input)
 	else
 		return (-1);
 }
+
 int pop(t_stack *stack)
 {
 	if (stack->top > 0)
