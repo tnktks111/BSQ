@@ -21,14 +21,10 @@ int solve_histgram(int *histgram, int size)
 			/* if (area > info->cur_max)
 			{
 				info->cur_max = area;
-				info->coordinates[0] = row - height;
+				info->coordinates[0] = row - height + 1;
 				info->coordinates[1] = stack->data + 1;
-				if (height > width)
-
-					info->coordinates[2] = ;
-					info->coordinates[3] = i;
-				else
-					info->cc
+				info->coordinates[2] = row - height + ft_min(height. width);
+				info->coordinates[3] = stack->data + ft_min(height, width);
 			}*/
 		}
 		push(&stack, i++);
@@ -45,10 +41,10 @@ int solve_histgram(int *histgram, int size)
 	return (max_area);
 }
 
-int main()
-{
-	int histgram[6] = {2, 1, 5, 6, 1, 2};
-	int size = 6;
-	printf("%d", solve_histgram(histgram, size));
-	return (0);
-}
+// int main()
+// {
+// 	int histgram[6] = {2, 1, 5, 6, 1, 2};
+// 	int size = 6;
+// 	printf("%d", solve_histgram(histgram, size));
+// 	return (0);
+// }
