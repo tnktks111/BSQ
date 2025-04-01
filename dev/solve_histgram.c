@@ -1,5 +1,6 @@
 #include "dev.h"
 
+//ここに引数"t_board_info *info"を追加して書き込む処理
 int solve_histgram(int *histgram, int size)
 {
 	int max_area = 0;
@@ -17,6 +18,18 @@ int solve_histgram(int *histgram, int size)
 			else
 				width = i;
 			max_area = ft_max(max_area, calculate_square(height, width));
+			/* if (area > info->cur_max)
+			{
+				info->cur_max = area;
+				info->coordinates[0] = row - height;
+				info->coordinates[1] = stack->data + 1;
+				if (height > width)
+
+					info->coordinates[2] = ;
+					info->coordinates[3] = i;
+				else
+					info->cc
+			}*/
 		}
 		push(&stack, i++);
 	}
@@ -34,8 +47,8 @@ int solve_histgram(int *histgram, int size)
 
 int main()
 {
-	int histgram[27] = {7,7,7,7,2,7,7,7,7,7,7,7,4,7,7,1,7,7,7,7,7,7,7,7,7,7,7};
-	int size = 27;
+	int histgram[6] = {2, 1, 5, 6, 1, 2};
+	int size = 6;
 	printf("%d", solve_histgram(histgram, size));
 	return (0);
 }
