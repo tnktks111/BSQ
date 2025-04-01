@@ -1,3 +1,4 @@
+#include "dev.h"
 int ft_max(int s1, int s2)
 {
 	if (s1 > s2)

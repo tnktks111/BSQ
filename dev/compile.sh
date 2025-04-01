@@ -1,0 +1,1 @@
+cc -Wall -Wextra -Werror -I. stack/*.c *.c utils/*.c -o bsq
