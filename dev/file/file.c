@@ -34,23 +34,16 @@ char *file_read(char *file)
 
 	f_size = file_size(file);
 	if (f_size == -1)
-	{
-		ft_putstr_error("Error\n");
 		return (NULL);
-	}
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		ft_putstr_error("Error\n");
 		return (NULL);
-	}
 	buffer = (char *)malloc(f_size + 1);
 	if (!buffer)
 		return NULL;
 	rd = read(fd, buffer, f_size);
 	if (rd == -1)
 	{
-		ft_putstr_error("Error\n");
 		close(fd);
 		return (NULL);
 	}

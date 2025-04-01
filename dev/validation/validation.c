@@ -1,30 +1,43 @@
 #include "dev.h"
 //正常動作で0,それ以外は1
-int validation(char *str)
+int validation(char *str, t_basic_info *info)
 {
-	char empty;
-	char obstacle;
-	char fill;
-	int row;
-	int col;
-	int row_count;
+    int row_count;
+	int num;
+	int i;
+
 	if (!check_head(str))
 		return (1);
-	row = str[0] - '0';
-	empty = str[1];
-	obstacle = str[2];
-	fill = str[3];
-	str = &str[5];
-	col = check_size(str);
-	row_count = 0;
-	while(*str)
+	num = 0;
+	i = 0;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		if (!check_row(str, empty, obstacle, col))
-			return (1);
-		str += col;
-		row_count++;
+		num = num * 10 + (str[i] - '0');
+		i++;
 	}
-	return (row_count != row);
+	info->row = num;
+	info->empty = str[i++];
+	info->obstacle = str[i++];
+	info->full = str[i++];
+
+
+    if (str[i] != '\n')
+        return (1);
+        
+    str = &str[i+1]; // ヘッダ行のあとに移動
+    
+    info->col = check_size(str);
+    row_count = 0;
+    
+    while(*str)
+    {
+        if (!check_row(str, info->empty, info->obstacle, info->col))
+            return (1);
+        str += info->col + 1; // +1 は '\n' をスキップするため
+        row_count++;
+    }
+    
+    return (row_count != info->row);
 }
 
 int is_printable(char c)
@@ -36,15 +49,23 @@ int is_printable(char c)
 
 int check_head(char *str)
 {
-	if (str[0] < '0' || str[0] > '9')
-		return (0);
-	if (str[0] == str[1] || str[1] == str[2] || str[2] == str[3])
-		return (0);
-	if (!(is_printable(str[0]) && is_printable(str[1]) && is_printable(str[2])))
-		return (0);
-	if (str[4] != '\n')
-		return (0);
-	return (1);
+    int i = 0;
+    if (!str || !str[0])
+        return (0);
+    if (str[0] < '0' || str[0] > '9')
+        return (0);
+    while (str[i] >= '0' && str[i] <= '9')
+        i++;
+    if (!str[i] || !str[i+1] || !str[i+2] || !str[i+3])
+        return (0);
+    if (str[i] == str[i+1] || str[i+1] == str[i+2] || str[i+2] == str[i])
+        return (0);
+    if (!(is_printable(str[i]) && is_printable(str[i+1]) && is_printable(str[i+2])))
+        return (0);
+    if (str[i+3] != '\n')
+        return (0);
+        
+    return (1);
 }
 
 int check_size(char *str)
@@ -52,10 +73,11 @@ int check_size(char *str)
 	int count;
 
 	count = 0;
-	if (*str == '\n')
-		return (-1);
 	while (*str && *str != '\n')
+	{
+		str++;
 		count++;
+	}
 	return (count);
 }
 
@@ -68,7 +90,7 @@ int check_row(char *row, char empty, char obstacle, int size)
 	i = 0;
 	while (row[i] != '\n')
 	{
-		if (row[i] != empty || row[i] != obstacle)
+		if (row[i] != empty && row[i] != obstacle)
 			return (0);
 		i++;
 	}

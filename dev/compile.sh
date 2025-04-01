@@ -1,1 +1,1 @@
-cc -Wall -Wextra -Werror -I. stack/*.c *.c utils/*.c -o bsq
+cc -Wall -Wextra -Werror -I. file/*.c handle_histgram/*.c parse/*.c stack/*.c strings/*.c utils/*.c validation/*.c *.c stdin/*.c -o bsq
