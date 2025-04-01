@@ -1,9 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kueda <kueda@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/01 20:15:37 by kueda             #+#    #+#             */
+/*   Updated: 2025/04/01 20:15:39 by kueda            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "dev.h"
-int file_size(char *file){
-	int fd;
-	char buffer[BUF_SIZE];
-	int byte_num;
-	int file_size;
+
+int	file_size(char *file)
+{
+	int		fd;
+	char	buffer[BUF_SIZE];
+	int		byte_num;
+	int		file_size;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
@@ -18,19 +32,19 @@ int file_size(char *file){
 			return (-1);
 		}
 		if (byte_num == 0)
-			break;
+			break ;
 		file_size += byte_num;
 	}
 	close(fd);
 	return (file_size);
 }
 
-char *file_read(char *file)
+char	*file_read(char *file)
 {
-	int fd;
-	char *buffer;
-	int f_size;
-	int rd;
+	int		fd;
+	char	*buffer;
+	int		f_size;
+	int		rd;
 
 	f_size = file_size(file);
 	if (f_size == -1)
@@ -40,7 +54,7 @@ char *file_read(char *file)
 		return (NULL);
 	buffer = (char *)malloc(f_size + 1);
 	if (!buffer)
-		return NULL;
+		return (NULL);
 	rd = read(fd, buffer, f_size);
 	if (rd == -1)
 	{

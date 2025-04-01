@@ -1,10 +1,11 @@
 #include "dev.h"
+
 char	*ft_strjoin(char *s1, char *s2, int len2)
 {
-	int		len1;
-	char	*res;
-	int		i;
-	int		j;
+	int len1;
+	char *res;
+	int i;
+	int j;
 
 	len1 = ft_strlen(s1);
 	res = (char *)malloc(len1 + len2 + 1);

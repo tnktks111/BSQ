@@ -1,5 +1,6 @@
 #include "dev.h"
-void	compute_histograms(t_board_info *info)
+
+void	compute_histograms(t_g_info *info)
 {
 	int	**heights;
 	int	i;
@@ -17,7 +18,7 @@ void	compute_histograms(t_board_info *info)
 			return ;
 		while (j < info->col)
 		{
-			if (info->board[i][j] == 0)
+			if (info->grid[i][j] == 0)
 				heights[i][j] = 0;
 			else if (i == 0)
 				heights[i][j] = 1;
@@ -27,5 +28,5 @@ void	compute_histograms(t_board_info *info)
 		}
 		i++;
 	}
-	info->board = heights;
+	info->grid = heights;
 }

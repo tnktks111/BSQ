@@ -1,5 +1,6 @@
 #include "dev.h"
-int main(int argc, char *argv[])
+
+int	main(int argc, char *argv[])
 {
 	int i = 1;
 	char input[BUF_SIZE];
