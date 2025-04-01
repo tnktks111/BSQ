@@ -36,6 +36,8 @@ int	validation(char *str, t_basic_info *info)
 		return (1);
 	str = &str[i + 1]; // ヘッダ行のあとに移動
 	info->col = check_size(str);
+	if (!info->col)
+		return (1);
 	row_count = 0;
 	while (*str)
 	{
