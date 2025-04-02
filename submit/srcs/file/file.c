@@ -12,12 +12,12 @@
 
 #include "dev.h"
 
-int	file_size(char *file)
+ssize_t	file_size(char *file)
 {
 	int		fd;
 	char	buffer[BUF_SIZE];
-	int		byte_num;
-	int		file_size;
+	ssize_t	byte_num;
+	ssize_t	file_size;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
@@ -43,8 +43,8 @@ char	*file_read(char *file)
 {
 	int		fd;
 	char	*buffer;
-	int		f_size;
-	int		rd;
+	ssize_t	f_size;
+	ssize_t	rd;
 
 	f_size = file_size(file);
 	if (f_size == -1)

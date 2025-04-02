@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   ft_multiassign.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kueda <kueda@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 20:16:53 by kueda             #+#    #+#             */
-/*   Updated: 2025/04/01 20:46:10 by kueda            ###   ########.fr       */
+/*   Created: 2025/04/02 12:45:52 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/04/02 12:45:53 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dev.h"
 
-long long	ft_max(long long s1, long long s2)
+void	ft_multiassign(long long *t, long long a, long long b, long long c)
 {
-	if (s1 > s2)
-		return (s1);
-	return (s2);
+	t[0] = a;
+	t[1] = b;
+	t[2] = c;
 }

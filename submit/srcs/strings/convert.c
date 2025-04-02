@@ -15,8 +15,8 @@
 //出力すべき文字列を生成
 void	convert(t_basic_info *basic_info, t_g_info *board_info)
 {
-	int	i;
-	int	j;
+	long long	i;
+	long long	j;
 
 	i = board_info->coordinates[0];
 	while (i < board_info->coordinates[0] + board_info->coordinates[2])

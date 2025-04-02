@@ -12,7 +12,7 @@
 
 #include "dev.h"
 
-int	ft_min(int s1, int s2)
+long long	ft_min(long long s1, long long s2)
 {
 	if (s1 < s2)
 		return (s1);

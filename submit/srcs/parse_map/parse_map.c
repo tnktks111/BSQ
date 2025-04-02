@@ -12,9 +12,9 @@
 
 #include "dev.h"
 
-void	fill_board_row(int *dest, char *src, int len, char empty)
+void	fill_board_r(long long *dest, char *src, long long len, char empty)
 {
-	int	j;
+	long long	j;
 
 	j = 0;
 	while (j < len)
@@ -27,27 +27,27 @@ void	fill_board_row(int *dest, char *src, int len, char empty)
 t_g_info	*parse_map(char **lines, t_basic_info *basic_info)
 {
 	t_g_info	*info;
-	int			i;
+	long long	i;
 
 	i = 0;
 	info = malloc(sizeof(t_g_info));
 	if (!info)
 		return (NULL);
-	info->row = basic_info->row;
-	info->col = basic_info->col;
+	info->r = basic_info->r;
+	info->c = basic_info->c;
 	info->cur_max = 0;
 	info->coordinates[0] = 0;
 	info->coordinates[1] = 0;
 	info->coordinates[2] = 0;
-	info->grid = malloc(sizeof(int *) * info->row);
+	info->grid = malloc(sizeof(long long *) * info->r);
 	if (!info->grid)
 		return (NULL);
-	while (i < info->row)
+	while (i < info->r)
 	{
-		info->grid[i] = malloc(sizeof(int) * info->col);
+		info->grid[i] = malloc(sizeof(long long) * info->c);
 		if (!info->grid[i])
 			return (NULL);
-		fill_board_row(info->grid[i], lines[i], info->col, basic_info->empty);
+		fill_board_r(info->grid[i], lines[i], info->c, basic_info->empty);
 		i++;
 	}
 	return (info);

@@ -12,7 +12,7 @@
 
 #include "dev.h"
 
-t_node	*create_node(int data)
+t_node	*create_node(long long data)
 {
 	t_node	*new_node;
 
@@ -24,7 +24,7 @@ t_node	*create_node(int data)
 	return (new_node);
 }
 
-int	insert_bf_head(t_node **head, int data)
+int	insert_bf_head(t_node **head, long long data)
 {
 	t_node	*new_node;
 
@@ -56,24 +56,4 @@ int	delete_head(t_node **head)
 int	is_empty(t_node **stack)
 {
 	return (*stack == NULL);
-}
-
-void	push(t_node **stack, int data)
-{
-	insert_bf_head(stack, data);
-}
-
-int	pop(t_node **stack)
-{
-	t_node	*tmp;
-	int		data;
-
-	if (is_empty(stack))
-	{
-		return (-1);
-	}
-	tmp = *stack;
-	data = tmp->data;
-	delete_head(stack);
-	return (data);
 }

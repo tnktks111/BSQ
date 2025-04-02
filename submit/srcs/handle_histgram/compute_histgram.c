@@ -14,21 +14,21 @@
 
 void	compute_histograms(t_g_info *info)
 {
-	int	**heights;
-	int	i;
-	int	j;
+	long long	**heights;
+	long long	i;
+	long long	j;
 
-	i = 0;
-	heights = (int **)malloc(sizeof(int *) * info->row);
+	i = -1;
+	heights = (long long **)malloc(sizeof(long long *) * info->r);
 	if (!heights)
 		return ;
-	while (i < info->row)
+	while (++i < info->r)
 	{
-		j = 0;
-		heights[i] = (int *)malloc(sizeof(int) * info->col);
+		j = -1;
+		heights[i] = (long long *)malloc(sizeof(long long) * info->c);
 		if (!heights[i])
 			return ;
-		while (j < info->col)
+		while (++j < info->c)
 		{
 			if (info->grid[i][j] == 0)
 				heights[i][j] = 0;
@@ -36,9 +36,7 @@ void	compute_histograms(t_g_info *info)
 				heights[i][j] = 1;
 			else
 				heights[i][j] = heights[i - 1][j] + 1;
-			j++;
 		}
-		i++;
 	}
 	info->grid = heights;
 }

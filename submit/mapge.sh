@@ -1,0 +1,1 @@
+perl tools/generate_map.pl "$1" "$2" "$3"

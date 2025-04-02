@@ -12,9 +12,9 @@
 
 #include "dev.h"
 
-int	calculate_square(int height, int width)
+long long	calculate_square(long long height, long long width)
 {
-	int	small;
+	long long	small;
 
 	small = ft_min(height, width);
 	return (small * small);

@@ -12,11 +12,11 @@
 
 #include "dev.h"
 
-char	**ft_split(char *str, int row, int col)
+char	**ft_split(char *str, long long row, long long col)
 {
-	char	**words;
-	int		i;
-	int		j;
+	char		**words;
+	long long	i;
+	long long	j;
 
 	words = (char **)malloc(sizeof(char *) * (row + 1));
 	i = 0;
@@ -29,7 +29,7 @@ char	**ft_split(char *str, int row, int col)
 		j = 0;
 		while (j < col && *str != '\n' && *str != '\0')
 			words[i][j++] = *str++;
-		words[i][j] = '\0'; // 文字列の終端
+		words[i][j] = '\0';
 		if (*str == '\n')
 			str++;
 		i++;

@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kueda <kueda@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 20:16:53 by kueda             #+#    #+#             */
-/*   Updated: 2025/04/01 20:46:10 by kueda            ###   ########.fr       */
+/*   Created: 2025/04/02 12:46:28 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/04/02 12:46:29 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dev.h"
 
-long long	ft_max(long long s1, long long s2)
+long long	ft_atoi(char *str, long long *num)
 {
-	if (s1 > s2)
-		return (s1);
-	return (s2);
+	long long	i;
+
+	i = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+		*num = *num * 10 + (str[i++] - '0');
+	return (i);
 }

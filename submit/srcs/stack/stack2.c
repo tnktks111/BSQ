@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   stack2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kueda <kueda@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 20:16:53 by kueda             #+#    #+#             */
-/*   Updated: 2025/04/01 20:46:10 by kueda            ###   ########.fr       */
+/*   Created: 2025/04/02 11:53:28 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/04/02 11:53:30 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dev.h"
 
-long long	ft_max(long long s1, long long s2)
+void	push(t_node **stack, long long data)
 {
-	if (s1 > s2)
-		return (s1);
-	return (s2);
+	insert_bf_head(stack, data);
+}
+
+long long	pop(t_node **stack)
+{
+	t_node		*tmp;
+	long long	data;
+
+	if (is_empty(stack))
+		return (-1);
+	tmp = *stack;
+	data = tmp->data;
+	delete_head(stack);
+	return (data);
 }

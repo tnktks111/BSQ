@@ -29,12 +29,12 @@ t_g_info	*parse_map(char **lines, t_basic_info *basic_info)
 	info->coordinates[0] = 0;
 	info->coordinates[1] = 0;
 	info->coordinates[2] = 0;
-	info->grid = malloc(sizeof(int *) * info->row);
+	info->grid = malloc(sizeof(long long *) * info->row);
 	if (!info->grid)
 		return (NULL);
 	while (i < info->row)
 	{
-		info->grid[i] = malloc(sizeof(int) * info->col);
+		info->grid[i] = malloc(sizeof(long long) * info->col);
 		if (!info->grid[i])
 			return (NULL);
 		fill_board_row(info->grid[i], lines[i], info->col, basic_info->empty);

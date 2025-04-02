@@ -14,13 +14,13 @@
 
 int	main(int argc, char *argv[])
 {
-	int		i;
-	char	input[BUF_SIZE];
+	long long	i;
+	char		*input;
 
 	i = 1;
 	if (argc == 1)
 	{
-		get_input(input);
+		get_input(&input);
 		if (parse(input))
 			ft_putstr_error("map error\n");
 	}

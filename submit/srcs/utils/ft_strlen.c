@@ -12,7 +12,7 @@
 
 #include "dev.h"
 
-int	ft_strlen(char *str)
+long long	ft_strlen(char *str)
 {
 	char	*tail;
 
