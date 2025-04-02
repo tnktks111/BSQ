@@ -34,32 +34,38 @@ char	*resize_buffer(char *input, long long *buf_size, long long i)
 	return (new_buf);
 }
 
+int	handle_buffer_resize(char **buffer, long long *buf_size, long long i)
+{
+	*buffer = resize_buffer(*buffer, buf_size, i);
+	if (!*buffer)
+		return (0);
+	return (1);
+}
+
 int	get_input(char **input)
 {
 	long long	i;
 	ssize_t		bytes_read;
-	char		ch;
 	long long	buf_size;
+	char		*buffer;
 
 	i = 0;
 	buf_size = BUF_SIZE;
-	*input = (char *)malloc(buf_size);
-	if (!*input)
+	buffer = (char *)malloc(buf_size);
+	if (!buffer)
 		return (0);
-	bytes_read = read(0, &ch, 1);
+	bytes_read = read(0, buffer + i, buf_size - i - 1);
 	while (bytes_read > 0)
 	{
-		if (ch == '\n' || ch == '\0')
-			break ;
+		i += bytes_read;
 		if (i >= buf_size - 1)
-		{
-			*input = resize_buffer(*input, &buf_size, i);
-			if (!*input)
+			if (!handle_buffer_resize(&buffer, &buf_size, i))
 				return (0);
-		}
-		(*input)[i++] = ch;
-		bytes_read = read(0, &ch, 1);
+		bytes_read = read(0, buffer + i, buf_size - i - 1);
 	}
-	(*input)[i] = '\0';
+	if (i == 0)
+		return (free(buffer), 0);
+	buffer[i] = '\0';
+	*input = buffer;
 	return (1);
 }

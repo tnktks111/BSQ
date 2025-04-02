@@ -20,11 +20,16 @@ int	main(int argc, char *argv[])
 	i = 1;
 	if (argc == 1)
 	{
-		get_input(&input);
-		if (parse(input))
+		if (!get_input(&input))
+		{
 			ft_putstr_error("map error\n");
+			return (1);
+		}
+		if (parse_input(input))
+			ft_putstr_error("map error\n");
+		free(input);
 	}
-	if (argc > 1)
+	else
 	{
 		while (i < argc)
 			if (parse(argv[i++]))

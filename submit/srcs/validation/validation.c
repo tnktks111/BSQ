@@ -21,11 +21,10 @@ int	validation(char *str, t_basic_info *info)
 	if (!check_head(str))
 		return (1);
 	num = 0;
-	str += ft_atoi(str, &num);
+	str += ft_atoi(get_sub(str, 0, check_size(str) - 4), &num);
 	info->r = num;
-	info->empty = *str++;
-	info->obstacle = *str++;
-	info->full = *str++;
+	set_info(info, str[0], str[1], str[2]);
+	str += 3;
 	if (*str++ != '\n')
 		return (1);
 	info->c = check_size(str);
@@ -42,31 +41,25 @@ int	validation(char *str, t_basic_info *info)
 	return (r_count != info->r);
 }
 
-int	is_print(char c)
+void	set_info(t_basic_info *info, char e, char o, char f)
 {
-	if (c < 32 || c > 126)
-		return (0);
-	return (1);
+	info->empty = e;
+	info->obstacle = o;
+	info->full = f;
 }
 
-int	check_head(char *str)
+int	check_head(char *s)
 {
-	long long	i;
+	long long	j;
 
-	i = 0;
-	if (!str || !str[0])
+	j = check_size(s);
+	if (j < 4)
 		return (0);
-	if (str[0] < '0' || str[0] > '9')
+	if (s[j -1] == s[j -2] || s[j -2] == s[j -3] || s[j -3] == s[j -1])
 		return (0);
-	while (str[i] >= '0' && str[i] <= '9')
-		i++;
-	if (!str[i] || !str[i + 1] || !str[i + 2] || !str[i + 3])
+	if (!(is_print(s[j - 1]) && is_print(s[j - 2]) && is_print(s[j - 3])))
 		return (0);
-	if (str[i] == str[i +1] || str[i +1] == str[i +2] || str[i +2] == str[i])
-		return (0);
-	if (!(is_print(str[i]) && is_print(str[i +1]) && is_print(str[i +2])))
-		return (0);
-	if (str[i + 3] != '\n')
+	if (!(ft_is_numeric(get_sub(s, 0, j - 4))))
 		return (0);
 	return (1);
 }

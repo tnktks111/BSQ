@@ -70,11 +70,14 @@ long long	ft_atoi(char *str, long long *num);
 void		ft_multiassign(long long *t, long long a, long long b, long long c);
 long long	get_left_index(t_node **stack);
 long long	get_width(long long i, t_node **stack);
+int			ft_is_numeric(char *str);
+char		*get_sub(char *str, int left, int right);
 
 int			validation(char *str, t_basic_info *info);
 int			is_print(char c);
 int			check_head(char *str);
 long long	check_size(char *str);
+void		set_info(t_basic_info *info, char e, char o, char f);
 int			check_r(char *r, char empty, char obstacle, long long size);
 void		fill_board_r(long long *dest, char *src, long long len, char empty);
 void		compute_histograms(t_g_info *info);
@@ -84,7 +87,9 @@ void		solve_hist_map(t_g_info *board_info);
 void		solve_hist_r(long long *h, long long s, t_g_info *i, long long r);
 void		convert(t_basic_info *basic_info, t_g_info *board_info);
 int			parse(char *file_path);
+int			parse_input(char *input);
 char		*resize_buffer(char *input, long long *buf_size, long long i);
+int			handle_buffer_resize(char **buf, long long *buf_s, long long i);
 int			get_input(char **input);
 t_g_info	*parse_map(char **lines, t_basic_info *basic_info);
 
