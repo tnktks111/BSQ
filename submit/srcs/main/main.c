@@ -17,7 +17,7 @@ int	main(int argc, char *argv[])
 	long long	i;
 	char		*input;
 
-	i = 1;
+	i = 0;
 	if (argc == 1)
 	{
 		if (!get_input(&input))
@@ -28,11 +28,15 @@ int	main(int argc, char *argv[])
 	}
 	else
 	{
-		while (i < argc)
+		while (++i < argc)
 		{
 			if (parse(argv[i]))
-				write(2, "map error\n", 10);
-			if (i++ != argc - 1)
+			{
+				ft_putstr_error("map error\n");
+				if (i < argc - 1)
+					write(2, "\n", 1);
+			}
+			else if (i != argc - 1)
 				write(1, "\n", 1);
 		}
 	}
