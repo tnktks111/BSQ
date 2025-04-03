@@ -13,37 +13,20 @@
 #include "dev.h"
 
 //正常動作で0、それ以外は1を返す
-int	parse(char *file_path)
+int	parse(char *file_path, t_basic_info *basic_info)
 {
 	char			*str;
-	t_basic_info	*basic_info;
-	t_g_info		*board_info;
-
 	str = file_read(file_path);
 	if (!str)
 		return (1);
-	basic_info = (t_basic_info *)malloc(sizeof(t_basic_info));
-	if (validation(str, basic_info))
-		return (free(basic_info), free(str), 1);
-	basic_info->lines = ft_split(str, basic_info->r, basic_info->c);
-	board_info = parse_map(basic_info->lines, basic_info);
-	compute_histograms(board_info);
-	solve_hist_map(board_info);
-	convert(basic_info, board_info);
-	ft_putstrarr(basic_info->lines);
-	t_basic_info_free(basic_info);
-	t_g_info_free(board_info);
-	return (free(str), 0);
+	return (parse_input(str, basic_info));
 }
 
-int	parse_input(char *input)
+int	parse_input(char *input, t_basic_info *basic_info)
 {
-	t_basic_info	*basic_info;
 	t_g_info		*board_info;
-
 	if (!input)
 		return (1);
-	basic_info = (t_basic_info *)malloc(sizeof(t_basic_info));
 	if (validation(input, basic_info))
 		return (1);
 	basic_info->lines = ft_split(input, basic_info->r, basic_info->c);
@@ -51,8 +34,6 @@ int	parse_input(char *input)
 	compute_histograms(board_info);
 	solve_hist_map(board_info);
 	convert(basic_info, board_info);
-	ft_putstrarr(basic_info->lines);
-	t_basic_info_free(basic_info);
 	t_g_info_free(board_info);
 	return (0);
 }

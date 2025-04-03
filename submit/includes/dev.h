@@ -86,8 +86,8 @@ void		print_board(long long **board, long long r, long long c);
 void		solve_hist_map(t_g_info *board_info);
 void		solve_hist_r(long long *h, long long s, t_g_info *i, long long r);
 void		convert(t_basic_info *basic_info, t_g_info *board_info);
-int			parse(char *file_path);
-int			parse_input(char *input);
+int			parse(char *file_path, t_basic_info *basic_info);
+int			parse_input(char *input, t_basic_info *basic_info);
 char		*resize_buffer(char *input, long long *buf_size, long long i);
 int			handle_buffer_resize(char **buf, long long *buf_s, long long i);
 int			get_input(char **input);
@@ -98,5 +98,8 @@ void		longlong_tab_free(long long **tab, long long size);
 void		t_basic_info_free(t_basic_info *t_basic_info);
 void		t_g_info_free(t_g_info *t_g_info);
 void		t_g_info_replace(t_g_info *t_g_info, long long **newgrid);
+
+void		general(char *argvi, int i, int n);
+void		stdin_general(char *input, int check);
 
 #endif
