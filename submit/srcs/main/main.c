@@ -21,10 +21,7 @@ int	main(int argc, char *argv[])
 	if (argc == 1)
 	{
 		if (!get_input(&input))
-		{
-			ft_putstr_error("map error\n");
-			return (1);
-		}
+			return (ft_putstr_error("map error\n"), 1);
 		if (parse_input(input))
 			ft_putstr_error("map error\n");
 		free(input);
@@ -32,8 +29,12 @@ int	main(int argc, char *argv[])
 	else
 	{
 		while (i < argc)
-			if (parse(argv[i++]))
-				ft_putstr_error("map error\n");
+		{
+			if (parse(argv[i]))
+				write(2, "map error\n", 10);
+			if (i++ != argc - 1)
+				write(1, "\n", 1);
+		}
 	}
 	return (0);
 }

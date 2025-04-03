@@ -21,12 +21,10 @@ int	validation(char *str, t_basic_info *info)
 	if (!check_head(str))
 		return (1);
 	num = 0;
-	str += ft_atoi(get_sub(str, 0, check_size(str) - 4), &num);
+	str += ft_atoi(str, &num, check_size(str) - 4);
 	info->r = num;
 	set_info(info, str[0], str[1], str[2]);
-	str += 3;
-	if (*str++ != '\n')
-		return (1);
+	str += 4;
 	info->c = check_size(str);
 	if (!info->c)
 		return (1);
@@ -51,6 +49,7 @@ void	set_info(t_basic_info *info, char e, char o, char f)
 int	check_head(char *s)
 {
 	long long	j;
+	char		*num;
 
 	j = check_size(s);
 	if (j < 4)
@@ -59,9 +58,10 @@ int	check_head(char *s)
 		return (0);
 	if (!(is_print(s[j - 1]) && is_print(s[j - 2]) && is_print(s[j - 3])))
 		return (0);
-	if (!(ft_is_numeric(get_sub(s, 0, j - 4))))
-		return (0);
-	return (1);
+	num = get_sub(s, 0, j - 4);
+	if (!(ft_is_numeric(num)))
+		return (free(num), 0);
+	return (free(num), 1);
 }
 
 long long	check_size(char *str)

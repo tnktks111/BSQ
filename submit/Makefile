@@ -6,8 +6,8 @@ INCLUDE_DIR = includes
 SRCS := $(shell find $(SRCS_DIR) -name "*.c")
 OBJS := $(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -I$(INCLUDE_DIR)
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -I$(INCLUDE_DIR) -g
 
 all: $(NAME)
 

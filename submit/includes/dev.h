@@ -66,7 +66,7 @@ void		ft_putstr_error(char *str);
 char		*ft_strjoin(char *s1, char *s2, long long len2);
 char		**ft_split(char *str, long long r, long long c);
 void		ft_putstrarr(char **arr);
-long long	ft_atoi(char *str, long long *num);
+long long	ft_atoi(char *str, long long *num, long long j);
 void		ft_multiassign(long long *t, long long a, long long b, long long c);
 long long	get_left_index(t_node **stack);
 long long	get_width(long long i, t_node **stack);
@@ -92,5 +92,11 @@ char		*resize_buffer(char *input, long long *buf_size, long long i);
 int			handle_buffer_resize(char **buf, long long *buf_s, long long i);
 int			get_input(char **input);
 t_g_info	*parse_map(char **lines, t_basic_info *basic_info);
+
+void		strarr_free(char **str);
+void		longlong_tab_free(long long **tab, long long size);
+void		t_basic_info_free(t_basic_info *t_basic_info);
+void		t_g_info_free(t_g_info *t_g_info);
+void		t_g_info_replace(t_g_info *t_g_info, long long **newgrid);
 
 #endif

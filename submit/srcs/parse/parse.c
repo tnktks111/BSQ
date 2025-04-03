@@ -24,14 +24,16 @@ int	parse(char *file_path)
 		return (1);
 	basic_info = (t_basic_info *)malloc(sizeof(t_basic_info));
 	if (validation(str, basic_info))
-		return (1);
+		return (free(basic_info), free(str), 1);
 	basic_info->lines = ft_split(str, basic_info->r, basic_info->c);
 	board_info = parse_map(basic_info->lines, basic_info);
 	compute_histograms(board_info);
 	solve_hist_map(board_info);
 	convert(basic_info, board_info);
 	ft_putstrarr(basic_info->lines);
-	return (0);
+	t_basic_info_free(basic_info);
+	t_g_info_free(board_info);
+	return (free(str), 0);
 }
 
 int	parse_input(char *input)
@@ -50,5 +52,7 @@ int	parse_input(char *input)
 	solve_hist_map(board_info);
 	convert(basic_info, board_info);
 	ft_putstrarr(basic_info->lines);
+	t_basic_info_free(basic_info);
+	t_g_info_free(board_info);
 	return (0);
 }

@@ -12,12 +12,12 @@
 
 #include "dev.h"
 
-long long	ft_atoi(char *str, long long *num)
+long long	ft_atoi(char *str, long long *num, long long j)
 {
 	long long	i;
 
 	i = 0;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[i] >= '0' && str[i] <= '9' && i <= j)
 		*num = *num * 10 + (str[i++] - '0');
 	return (i);
 }

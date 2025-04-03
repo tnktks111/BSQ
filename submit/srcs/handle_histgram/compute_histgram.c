@@ -38,5 +38,5 @@ void	compute_histograms(t_g_info *info)
 				heights[i][j] = heights[i - 1][j] + 1;
 		}
 	}
-	info->grid = heights;
+	t_g_info_replace(info, heights);
 }
